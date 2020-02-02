@@ -1,11 +1,13 @@
 //@flow
-import React, {useEffect, useState} from 'react';
+import * as React from 'react';
+import {useEffect, useState, Fragment} from 'react';
+import Post from "./Post";
 
-export default function Posts() {
+export default function Posts(): React.Node {
     const [hasError, setErrors] = useState(false);
-    const [posts, setPosts] = useState({});
+    const [posts, setPosts] = useState([]);
 
-    async function fetchData() {
+    async function fetchData(): Promise<void> {
         const res = await fetch('https://jsonplaceholder.typicode.com/posts');
         res
             .json()
@@ -15,13 +17,8 @@ export default function Posts() {
 
     useEffect(() => {
         fetchData();
-    });
+    }, []);
 
-    return (
-        <div>
-            <span>{JSON.stringify(posts)}</span>
-            <hr />
-            <span>Has error: {JSON.stringify(hasError)}</span>
-        </div>
-    );
+    if (hasError) return null;
+    return <Fragment>{posts.map(post => <Post post={post} key={post.id} />)}</Fragment>
 }

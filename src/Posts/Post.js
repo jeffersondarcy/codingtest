@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
-import {ListItemText} from "@material-ui/core";
+import {CardContent, Card, CardHeader, Typography, Grid} from "@material-ui/core";
 
-type IPost = {
+export type IPost = {
     id: number;
     userId: number;
     title: string;
@@ -15,6 +15,11 @@ type PostProps = {
 
 export default function Post({post}: PostProps): React.Node {
     return (
-        <ListItemText primary={post.title} secondary={post.body} />
+        <Grid item xs>
+            <Card>
+                <CardHeader title={post.title} subheader={`by user ${post.userId}`}/>
+                <CardContent><Typography component="p" color="textSecondary">{post.body}</Typography> </CardContent>
+            </Card>
+        </Grid>
     );
 }

@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import {ListItemText} from "@material-ui/core";
 
 type IPost = {
     id: number;
@@ -14,8 +15,6 @@ type PostProps = {
 
 export default function Post({post}: PostProps): React.Node {
     return (
-        <div>
-            {post.title}
-        </div>
+        <ListItemText primary={post.title} secondary={post.body} />
     );
 }

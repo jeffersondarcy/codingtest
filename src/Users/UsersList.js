@@ -10,7 +10,7 @@ type PostsListProps = {
 
 export default function UsersList({users}: PostsListProps): React.Node {
     return (
-        <Grid container direction="column" spacing={1 }>
+        <Grid container direction="column" spacing={ 2 }>
             {users.map(user => <User user={user} key={user.id} />)}
         </Grid>);
 }

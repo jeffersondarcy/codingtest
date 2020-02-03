@@ -8,9 +8,8 @@ export default function Posts(): React.Node {
     const [hasError, setErrors] = useState(false);
     const [users, setUsers] = useState([]);
 
-    const fetchData = createDataFetcher('https://jsonplaceholder.typicode.com/users', setUsers, setErrors);
-
     useEffect(() => {
+        const fetchData = createDataFetcher('https://jsonplaceholder.typicode.com/users', setUsers, setErrors);
         fetchData();
     }, []);
 

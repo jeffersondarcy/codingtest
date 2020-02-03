@@ -7,15 +7,9 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
 
-export type IUser = {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
-    address: IAddress;
-    phone: string;
-    website: string;
-    company: ICompany;
+type IGeo = {
+    lat: string;
+    lng: string;
 }
 
 type IAddress = {
@@ -26,15 +20,21 @@ type IAddress = {
     geo: IGeo;
 }
 
-type IGeo = {
-    lat: string;
-    lng: string;
-}
-
 type ICompany = {
     name: string;
     catchPhrase: string;
     bs: string;
+}
+
+export type IUser = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    address: IAddress;
+    phone: string;
+    website: string;
+    company: ICompany;
 }
 
 type UserProps = {

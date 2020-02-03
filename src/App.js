@@ -7,19 +7,23 @@ import {
 
 import './App.css';
 import Posts from "./Posts/Posts";
-import {Container} from "@material-ui/core";
+import {Container, Paper} from "@material-ui/core";
 import Users from "./Users/Users";
+import Navigation from "./Navigation/Navigation";
 
 function App() {
     return (
         <Router>
-            <Container maxWidth="md">{/*todo check roboto font and mat ui setup*/}
+            <Paper>
+                <Navigation/>
+                <Container maxWidth="md">
                 <Switch>
                     <Route exact path="/"><Posts/></Route>
                     <Route path="/posts"><Posts/></Route>
                     <Route path="/users"><Users/></Route>
                 </Switch>
-            </Container>
+                </Container>
+            </Paper>
         </Router>
     );
 }

@@ -3,7 +3,6 @@ import * as React from 'react';
 import {CardContent, Card, CardHeader, Typography, Grid, Collapse} from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
@@ -41,13 +40,10 @@ type ICompany = {
 type UserProps = {
     user: IUser
 }
+
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -58,9 +54,6 @@ const useStyles = makeStyles(theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
 }));
 
@@ -78,7 +71,7 @@ export default function User({user}: UserProps): React.Node {
                 <CardContent>
                     <Typography component="p" color="textSecondary">Username: {user.username}</Typography>
                     <Typography component="p" color="textSecondary">Email: {user.email}</Typography>
-                    <Typography component="p" color="textSecondary">Email: {user.email}</Typography>
+                    <Typography component="p" color="textSecondary">Phone: {user.phone}</Typography>
                 </CardContent>
                 <CardActions disableSpacing>
                     <IconButton
@@ -94,9 +87,19 @@ export default function User({user}: UserProps): React.Node {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography component="p" color="textSecondary">Username: {user.username}</Typography>
-                        <Typography component="p" color="textSecondary">Email: {user.email}</Typography>
-                        <Typography component="p" color="textSecondary">Email: {user.email}</Typography>
+                        <Typography component="p" color="textSecondary">
+                            Address:
+                            {` ${user.address.street}${user.address.street}, ${user.address.zipcode} ${user.address.city}`}
+                        </Typography>
+                        <Typography component="p" color="textSecondary">
+                            Web: <a href={`http://www.${user.website}`}
+                                    target="_blank" rel="noopener noreferrer">{user.website}</a>
+                        </Typography>
+                        <Typography component="p" color="textSecondary">Company: {user.company.name}</Typography>
+                        <Typography component="p" color="textSecondary">
+                            Email:
+                            <a href={`mailto:${user.email}`}>{user.email}</a>
+                        </Typography>
                     </CardContent>
                 </Collapse>
             </Card>
